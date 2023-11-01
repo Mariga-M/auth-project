@@ -8,6 +8,7 @@ import { Input } from "../ui/input"
 import { Button } from "../ui/button"
 import Link from "next/link"
 import GoogleSignInButton from "../GoogleSignInButton"
+import { useRouter } from "next/navigation"
 
 //input validation
 const FormSchema = z
@@ -42,7 +43,9 @@ const FormSchema = z
         message: "Passwords do not match",
     })
 
-const SignInForm = () => {
+const SignUpForm = () => {
+    const router = useRouter();
+
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
         defaultValues: {
@@ -53,8 +56,25 @@ const SignInForm = () => {
         },
     })
 
-    const onSubmit = (values: z.infer<typeof FormSchema>) => {
-        console.log(values)
+    const onSubmit = async (values: z.infer<typeof FormSchema>) => {
+        const response = await fetch('/api/user', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application'
+            },
+            body: JSON.stringify({
+                username: values.username,
+                email: values.email,
+                password: values.password
+            })
+        })
+
+        if (response.ok) {
+            alert('Registration successful')
+            router.push('/sign-in')
+        } else {
+            console.error('Registration Failed')
+        }
     }
 
     return (
@@ -129,4 +149,4 @@ const SignInForm = () => {
     )
 }
 
-export default SignInForm
+export default SignUpForm
