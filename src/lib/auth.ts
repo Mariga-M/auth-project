@@ -44,6 +44,11 @@ export const authOptions: NextAuthOptions = {
                 return null;
             }
 
+        // Assuming username in the User type is non-nullable
+        if (existingUser.username === null) {
+            return null;
+        }
+
             return {
                 id: `${existingUser.id} `,
                 username: existingUser.username,
