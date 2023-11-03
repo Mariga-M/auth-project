@@ -10,6 +10,7 @@ import Link from "next/link"
 import GoogleSignInButton from "../GoogleSignInButton"
 import { useRouter } from "next/navigation"
 import { useToast } from "@/components/ui/use-toast"
+import { Gem } from "lucide-react"
 
 //input validation
 const FormSchema = z
@@ -91,6 +92,9 @@ const SignUpForm = () => {
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="w-full ">
+                <div className="flex justify-center mb-6">
+                    <Gem />
+                </div>
                 <div className="space-y-3">
                     <FormField
                         control={form.control}

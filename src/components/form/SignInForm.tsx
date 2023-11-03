@@ -11,6 +11,7 @@ import GoogleSignInButton from "../GoogleSignInButton"
 import { signIn } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import { useToast } from "@/components/ui/use-toast"
+import { Gem } from "lucide-react"
 
 
 const FormSchema = z.object({
@@ -67,6 +68,9 @@ const SignInForm = () => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="w-full ">
+        <div className="flex justify-center mb-6">
+          <Gem />
+        </div>
         <div className="space-y-6">
           <FormField
             control={form.control}

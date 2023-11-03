@@ -3,7 +3,6 @@ import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { db } from "./db";
 import { compare } from "bcrypt";
-import { error } from "console";
 
 export const authOptions: NextAuthOptions = {
     // connect app to db
